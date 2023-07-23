@@ -39,7 +39,7 @@ public class TreeController : MonoBehaviour
 
     TreeDieController treeDieCon;
 
-    float agentSitVelocityThreshold = 0.1f;
+    public float agentSitVelocityThreshold = 0.1f;
 
     public static float elfPop;
 

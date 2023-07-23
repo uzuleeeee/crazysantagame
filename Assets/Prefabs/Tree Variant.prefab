@@ -447,6 +447,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   sources:
   - {fileID: 2990397745365849607}
+  agentSitVelocityThreshold: 1
 --- !u!95 &5463049710638825772
 Animator:
   serializedVersion: 5
