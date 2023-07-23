@@ -121,6 +121,10 @@ public class TreeController : MonoBehaviour
         elfPop += amount;
     }
 
+    public float GetElfPop() {
+        return elfPop;
+    }
+
     void SetStarBrightness() {
         transitionCurrent = Mathf.MoveTowards(transitionCurrent, transitionTarget, transitionSpeed * Time.deltaTime);
         starMat.SetFloat("_Brightness", transitionCurve.Evaluate(transitionCurrent));

@@ -75,7 +75,7 @@ public class ElfController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (justDeadCount < 1) {
+        if (justDeadCount < treeCon.GetElfPop() / 3) {
             int otherGameObjectLayer = other.transform.gameObject.layer;
 
             Debug.Log(otherGameObjectLayer);
