@@ -35,7 +35,7 @@ public class HouseController : MonoBehaviour
     public void EnableHouse() {
         housePhysicsCon.EnableHouse();
         currentHouse.GetComponentInChildren<TreeSpawner>().StartSpawning();
-        //houseAppearanceCon.TurnBlack();
+        houseAppearanceCon.TurnBlack();
     }
 
     void GetControllers() {

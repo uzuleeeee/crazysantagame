@@ -26,7 +26,7 @@ public class HouseAppearanceController : MonoBehaviour
     }
 
     public void TurnBlack() {
-        ChangeBrightness(0);
+        ChangeBrightness(0.4f);
     }
 
     void ChangeBrightness(float brightness) {
