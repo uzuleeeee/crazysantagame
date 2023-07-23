@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5199869838423213506}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &185181704653935663
 Rigidbody:
@@ -74,7 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bbd5d87394d48bb91dcd021b61a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondary: 0
   hitEffect: {fileID: 2465684937024235583, guid: cf279af83c76e47b2b18f7421634c415, type: 3}
   broken: {fileID: 1328470851975530057, guid: 8e0671ebfa46d4f629900648e1bbc84e, type: 3}
   radius: 25
@@ -118,15 +117,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5457964216be402abe1f90612f5eb75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.083
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5457964216be402abe1f90612f5eb75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.007
+      value: -0.323
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5457964216be402abe1f90612f5eb75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.749
+      value: 0.532
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5457964216be402abe1f90612f5eb75, type: 3}
       propertyPath: m_LocalRotation.w
