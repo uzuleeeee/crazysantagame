@@ -47,6 +47,8 @@ public class ElfController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Just dead count: " + justDeadCount);
+
         while (player == null) {
             player = GameObject.FindWithTag("Player").transform;
         }
@@ -63,22 +65,28 @@ public class ElfController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (justDeadCount < 1) {
-            int otherGameObjectLayer = other.transform.gameObject.layer;
+        int otherGameObjectLayer = other.transform.gameObject.layer;
 
-            Debug.Log(otherGameObjectLayer);
+        Debug.Log(otherGameObjectLayer);
 
-            if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer || otherGameObjectLayer == arrowLayer) {
-                if (!hit) {
-                    Rigidbody otherRb = other.transform.parent.GetComponent<Rigidbody>();
-                    if (otherGameObjectLayer == weaponLayer && otherRb.velocity.magnitude < 20) return;
+        if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer || otherGameObjectLayer == arrowLayer) {
+            if (otherGameObjectLayer == inMotionLayer && justDeadCount > 0) {
+                return;
+            }
 
-                    hit = true; 
-                    Vector3 hitPoint = other.transform.position;
-                    Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
-                    EnableRagdoll();
-                    ree.Play();
+            if (!hit) {
+                Rigidbody otherRb = other.transform.parent.GetComponent<Rigidbody>();
+                if (otherGameObjectLayer == weaponLayer && otherRb.velocity.magnitude < 20) {
+                    return;
                 }
+
+                justDeadCount++;
+
+                hit = true; 
+                Vector3 hitPoint = other.transform.position;
+                Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
+                EnableRagdoll();
+                ree.Play();
             }
         }
     }
@@ -108,8 +116,6 @@ public class ElfController : MonoBehaviour
             rb.detectCollisions = true;
             rb.AddForce(opposite.normalized * 70, ForceMode.Impulse);;
         }
-
-        justDeadCount++;
         Invoke("DecreaseJustDeadCount", 0.2f);
     }
 
