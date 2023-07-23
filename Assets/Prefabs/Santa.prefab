@@ -730,7 +730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7064544312571097469
 Transform:
   m_ObjectHideFlags: 0
@@ -746,7 +746,7 @@ Transform:
   - {fileID: 7673188980245936761}
   - {fileID: 8173294750585853413}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 173.828, z: 0}
 --- !u!195 &61479338953297852
 NavMeshAgent:
@@ -2969,6 +2969,26 @@ PrefabInstance:
     - target: {fileID: -2377543532151146415, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
       propertyPath: m_TagString
       value: Santa Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: -2107578408563784954, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2107578408563784954, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2107578408563784954, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2107578408563784954, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2107578408563784954, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -2107578408563784954, guid: 3cca6c2dd9ba04d318019a0be60db67c, type: 3}
       propertyPath: m_Bones.Array.data[0]
