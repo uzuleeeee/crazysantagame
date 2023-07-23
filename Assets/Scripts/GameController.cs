@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public ArrowController arrowCon;
 
     Delete del;
+    TreeController treeCon;
 
     bool changed = false;
 
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
     {
         //camCon.Enter();
         del = GetComponent<Delete>();
+        treeCon = GetComponent<TreeController>();
         am = GetComponentInChildren<AudioManager>();
         //camCon.MainMenu();
     }
@@ -50,6 +52,7 @@ public class GameController : MonoBehaviour
             houseCon.Switch(1.3f);
             Invoke("ResetChanged", 5.3f);
             am.Play("Static");
+            treeCon.ResetElfPop();
         }
     }
 

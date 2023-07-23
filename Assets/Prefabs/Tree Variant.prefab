@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee732d350e08048c5ba7ed385b767dcf, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 8966787361680467729, guid: ee732d350e08048c5ba7ed385b767dcf, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068

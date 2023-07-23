@@ -22,13 +22,19 @@ public class ElfController : MonoBehaviour
     Animator anim;
     Collider mainCollider;
 
-    public AudioSource ree;
+    public AudioSource ree, jump;
 
     public static int justDeadCount;
+    
+    TreeController treeCon;
 
     // Start is called before the first frame update
     void Start()
     {
+        treeCon = GameObject.FindWithTag("Tree").GetComponent<TreeController>();
+
+        treeCon.ChangeElfPop(1);
+
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
         playerHitDirection = GameObject.FindWithTag("Weapon Direction").transform;
@@ -57,6 +63,10 @@ public class ElfController : MonoBehaviour
             agent.SetDestination(player.position);
             RotateTo(player.position);
         }
+
+        if (agent.isOnOffMeshLink) {
+            jump.Play();
+        }
     }
 
     void RotateTo(Vector3 target) {
@@ -65,28 +75,26 @@ public class ElfController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        int otherGameObjectLayer = other.transform.gameObject.layer;
+        if (justDeadCount < 1) {
+            int otherGameObjectLayer = other.transform.gameObject.layer;
 
-        Debug.Log(otherGameObjectLayer);
+            Debug.Log(otherGameObjectLayer);
 
-        if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer || otherGameObjectLayer == arrowLayer) {
-            if (otherGameObjectLayer == inMotionLayer && justDeadCount > 0) {
-                return;
-            }
+            if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer || otherGameObjectLayer == arrowLayer) {
+                if (!hit) {
+                    Rigidbody otherRb = other.transform.parent.GetComponent<Rigidbody>();
+                    if (otherGameObjectLayer == weaponLayer && otherRb.velocity.magnitude < 20) {
+                        return;
+                    }
 
-            if (!hit) {
-                Rigidbody otherRb = other.transform.parent.GetComponent<Rigidbody>();
-                if (otherGameObjectLayer == weaponLayer && otherRb.velocity.magnitude < 20) {
-                    return;
+                    justDeadCount++;
+
+                    hit = true; 
+                    Vector3 hitPoint = other.transform.position;
+                    Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
+                    EnableRagdoll();
+                    ree.Play();
                 }
-
-                justDeadCount++;
-
-                hit = true; 
-                Vector3 hitPoint = other.transform.position;
-                Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
-                EnableRagdoll();
-                ree.Play();
             }
         }
     }
@@ -117,6 +125,7 @@ public class ElfController : MonoBehaviour
             rb.AddForce(opposite.normalized * 70, ForceMode.Impulse);;
         }
         Invoke("DecreaseJustDeadCount", 0.2f);
+        treeCon.ChangeElfPop(-1);
     }
 
     void DecreaseJustDeadCount() {

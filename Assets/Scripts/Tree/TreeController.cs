@@ -41,6 +41,8 @@ public class TreeController : MonoBehaviour
 
     float agentSitVelocityThreshold = 0.1f;
 
+    public static float elfPop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,8 @@ public class TreeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Elf pop: " + elfPop);
+
         if (health <= 0) {
             treeDieCon.Die();
             return;
@@ -97,14 +101,24 @@ public class TreeController : MonoBehaviour
     }
 
     void SpawnElf() {
-        if (agent.velocity.sqrMagnitude <= agentSitVelocityThreshold) {
-            spawnedElf = Instantiate(elf, elfSpawnPoint.position, elfSpawnPoint.rotation);
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(elfSpawnPoint.position, out hit, 2f, 0)) {
-                spawnedElf.transform.position = hit.position;
+        if (elfPop < 20) {
+            if (agent.velocity.sqrMagnitude <= agentSitVelocityThreshold) {
+                spawnedElf = Instantiate(elf, elfSpawnPoint.position, elfSpawnPoint.rotation);
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(elfSpawnPoint.position, out hit, 2f, 0)) {
+                    spawnedElf.transform.position = hit.position;
+                }
+                BounceStarBrightness();
             }
-            BounceStarBrightness();
         }
+    }
+
+    public void ResetElfPop() {
+        elfPop = 0;
+    }
+
+    public void ChangeElfPop(int amount) {
+        elfPop += amount;
     }
 
     void SetStarBrightness() {
