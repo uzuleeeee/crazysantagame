@@ -23,18 +23,12 @@ public class TreeDieController : MonoBehaviour
         
     }
 
-    public void Die() {
-        Instantiate(broken, transform.position, Quaternion.Euler(new Vector3(-90, transform.rotation.y, transform.rotation.z)));
+    public void Die(Vector3 hitPoint) {
+        GameObject brokenTree = Instantiate(broken, transform.position, Quaternion.Euler(new Vector3(-90, transform.rotation.y, transform.rotation.z)));
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-            
-        foreach (Collider nearbyObject in colliders) {
-            if (nearbyObject.gameObject.layer == LayerMask.NameToLayer("ElfHousePiece")) {
-                Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-
-                if (rb != null) {
-                    rb.AddExplosionForce(force, transform.position, radius);
-                }
+        foreach (Rigidbody rb in brokenTree.GetComponentsInChildren<Rigidbody>()) {
+            if (rb != null) {
+                rb.AddExplosionForce(force, hitPoint, radius);
             }
         }
 

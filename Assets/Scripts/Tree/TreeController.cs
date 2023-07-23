@@ -70,7 +70,7 @@ public class TreeController : MonoBehaviour
         Debug.Log("Elf pop: " + elfPop);
 
         if (health <= 0) {
-            treeDieCon.Die();
+            treeDieCon.Die(player.position);
             return;
         }
 
