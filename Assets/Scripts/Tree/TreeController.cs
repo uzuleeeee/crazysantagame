@@ -74,7 +74,6 @@ public class TreeController : MonoBehaviour
             return;
         }
 
-        Debug.Log(Mathf.Lerp(0.9f, 1, 14));
         treeMat.SetFloat("_Progress", Mathf.Lerp(0.9f, 1, health / originalHealth));
 
         oppositeDir = transform.position - player.position;

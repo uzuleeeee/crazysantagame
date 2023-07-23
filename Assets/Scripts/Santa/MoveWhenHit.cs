@@ -46,13 +46,15 @@ public class MoveWhenHit : MonoBehaviour
         weaponLayer = LayerMask.NameToLayer("Weapon");
 
         hit = false;
+
+        transitionCurrent = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!santa) {
-            transitionCurrent = Mathf.MoveTowards(transitionCurrent, transitionTarget, transitionSpeed * Time.deltaTime);
+            transitionCurrent = Mathf.MoveTowards(transitionCurrent, 1, transitionSpeed * Time.deltaTime);
             rigBuilder.weight = transitionCurve.Evaluate(transitionCurrent);
         }
     }
@@ -63,7 +65,6 @@ public class MoveWhenHit : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        //Debug.Log(other.name);
         int otherGameObjectLayer = other.transform.gameObject.layer;
 
         if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer) {
@@ -73,9 +74,7 @@ public class MoveWhenHit : MonoBehaviour
                 hit = true; 
                 Vector3 hitPoint = other.transform.position;
                 Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
-
-                //santaCon.health -= other.gameObject.GetComponent<WeaponController>().damage;
-
+                
                 Invoke(nameof(ResetHitBool), 0.5f);
 
                 if (otherGameObjectLayer == inMotionLayer) {
@@ -110,8 +109,6 @@ public class MoveWhenHit : MonoBehaviour
             }
         }
     }
-
-
 
     void ResetHitBool() {
         hit = false;

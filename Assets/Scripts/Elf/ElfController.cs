@@ -116,7 +116,7 @@ public class ElfController : MonoBehaviour
         mainCollider.enabled = false;
         agent.velocity = Vector3.zero;
 
-        //Vector3 opposite = transform.position - player.position;
+        Vector3 opposite = transform.position - player.position;
         //transform.position += opposite.normalized;
 
         foreach (Rigidbody rb in rbs) {
