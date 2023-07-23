@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     AudioManager am;
+    CursorController cursorCon;
     public CameraController camCon;
     public PlayerRagdollController playerRDCon;
     public PostController postCon;
@@ -26,6 +27,9 @@ public class GameController : MonoBehaviour
         del = GetComponent<Delete>();
         treeCon = GetComponent<TreeController>();
         am = GetComponentInChildren<AudioManager>();
+        cursorCon = GetComponent<CursorController>();
+
+        cursorCon.EnableCursor(0);
         //camCon.MainMenu();
     }
 
@@ -34,6 +38,7 @@ public class GameController : MonoBehaviour
     {
         if (!changed) {
             if (camCon.MainMenu() && Input.GetMouseButtonDown(0)) {
+                cursorCon.DisableCursor();
                 Debug.Log("------------enter house");
                 camCon.Enter();
                 houseCon.EnableHouse();
@@ -50,6 +55,7 @@ public class GameController : MonoBehaviour
             postCon.BouncePost();
             santaCon.Disable();
             houseCon.Switch(1.3f);
+            cursorCon.EnableCursor(5.3f);
             Invoke("ResetChanged", 5.3f);
             am.Play("Static");
             treeCon.ResetElfPop();
