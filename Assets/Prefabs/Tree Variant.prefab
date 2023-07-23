@@ -206,7 +206,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ee732d350e08048c5ba7ed385b767dcf, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee732d350e08048c5ba7ed385b767dcf, type: 3}
       propertyPath: m_LocalScale.x
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   sqrDist: 25
-  sqrOutDist: 144
+  sqrOutDist: 900
   rotSpeed: 750
   elf: {fileID: 6939944051060139758, guid: 20d5d177cd65f4ea6bdbe84e35e28472, type: 3}
   elfSpawnPoint: {fileID: 7961849352776399083}

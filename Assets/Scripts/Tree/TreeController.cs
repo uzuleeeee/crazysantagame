@@ -39,6 +39,8 @@ public class TreeController : MonoBehaviour
 
     TreeDieController treeDieCon;
 
+    float agentSitVelocityThreshold = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +59,7 @@ public class TreeController : MonoBehaviour
 
         treeDieCon = GetComponent<TreeDieController>();
 
-        InvokeRepeating("SpawnElf", 3, 10);
+        InvokeRepeating("SpawnElf", 3, 5);
     }
 
     // Update is called once per frame
@@ -74,7 +76,7 @@ public class TreeController : MonoBehaviour
         oppositeDir = transform.position - player.position;
         sqrCurrentDist = oppositeDir.sqrMagnitude;
 
-        if (agent.velocity.sqrMagnitude > 0.1f) {
+        if (agent.velocity.sqrMagnitude > agentSitVelocityThreshold) {
             anim.SetBool(runHash, true);
             lookTarget = newPos;
             sources[0].Play();
@@ -95,12 +97,14 @@ public class TreeController : MonoBehaviour
     }
 
     void SpawnElf() {
-        spawnedElf = Instantiate(elf, elfSpawnPoint.position, elfSpawnPoint.rotation);
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(elfSpawnPoint.position, out hit, 2f, 0)) {
-            spawnedElf.transform.position = hit.position;
+        if (agent.velocity.sqrMagnitude <= agentSitVelocityThreshold) {
+            spawnedElf = Instantiate(elf, elfSpawnPoint.position, elfSpawnPoint.rotation);
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(elfSpawnPoint.position, out hit, 2f, 0)) {
+                spawnedElf.transform.position = hit.position;
+            }
+            BounceStarBrightness();
         }
-        BounceStarBrightness();
     }
 
     void SetStarBrightness() {
