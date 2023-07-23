@@ -44,7 +44,7 @@ TagManager:
   - Santa
   - Exclude From NavMesh
   - Elf
-  - ElfRagdollWeapon
+  - ElfRagdoll
   - House
   - ElfHousePiece
   - ArrowForPlayer
