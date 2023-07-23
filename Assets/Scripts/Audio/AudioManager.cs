@@ -39,7 +39,11 @@ public class AudioManager : MonoBehaviour
     void Update() {
         if (bounce) {
             foreach (Sound s in sounds) {
-                s.source.pitch = Time.timeScale;
+                if (s.name != "Static") {
+                    s.source.pitch = Time.timeScale;
+                } else {
+                    s.source.volume = Mathf.Min(1, (1/-0.5f) * (Time.timeScale - 1));
+                }
             }
         }
 

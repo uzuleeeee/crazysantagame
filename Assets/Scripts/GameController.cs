@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    AudioManager am;
     public CameraController camCon;
     public PlayerRagdollController playerRDCon;
     public PostController postCon;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
     {
         //camCon.Enter();
         del = GetComponent<Delete>();
+        am = GetComponentInChildren<AudioManager>();
         //camCon.MainMenu();
     }
 
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour
             santaCon.Disable();
             houseCon.Switch(1.3f);
             Invoke("ResetChanged", 5.3f);
+            am.Play("Static");
         }
     }
 
