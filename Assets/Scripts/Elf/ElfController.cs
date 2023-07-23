@@ -116,13 +116,13 @@ public class ElfController : MonoBehaviour
         mainCollider.enabled = false;
         agent.velocity = Vector3.zero;
 
-        Vector3 opposite = transform.position - player.position;
-        transform.position += opposite.normalized;
+        //Vector3 opposite = transform.position - player.position;
+        //transform.position += opposite.normalized;
 
         foreach (Rigidbody rb in rbs) {
             rb.isKinematic = false;
             rb.detectCollisions = true;
-            rb.AddForce(opposite.normalized * 70, ForceMode.Impulse);;
+            rb.AddForce(opposite.normalized * 40, ForceMode.Impulse);;
         }
         Invoke("DecreaseJustDeadCount", 0.2f);
         treeCon.ChangeElfPop(-1);
