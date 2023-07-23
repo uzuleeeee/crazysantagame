@@ -1456,6 +1456,7 @@ GameObject:
   - component: {fileID: 5698992127654931991}
   - component: {fileID: 3574911202689244127}
   - component: {fileID: 8029609636168888899}
+  - component: {fileID: 2308813594991400642}
   m_Layer: 7
   m_Name: Player Ragdoll
   m_TagString: Player
@@ -1618,6 +1619,7 @@ MonoBehaviour:
   headMesh: {fileID: 4465829064345735100}
   playerBody: {fileID: 1575004038939601027, guid: e52b36d35d1e742b98a85b197c72117c, type: 3}
   ragdoll: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!114 &3574911202689244127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,6 +1662,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2308813594991400642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245521402007085712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2ccc01c86854c4eacd954dfa5b22da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4283557805154358779
 GameObject:
   m_ObjectHideFlags: 0

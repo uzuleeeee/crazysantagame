@@ -219,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763706145398509929}
   - component: {fileID: -5446568287655678251}
+  - component: {fileID: -2736697826088075028}
   m_Layer: 0
   m_Name: Couch broken
   m_TagString: Untagged
@@ -257,6 +258,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deleteThis: 1
+--- !u!114 &-2736697826088075028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014945811520041945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2ccc01c86854c4eacd954dfa5b22da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3615934488787970447
 GameObject:
   m_ObjectHideFlags: 0
