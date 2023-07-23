@@ -24,6 +24,8 @@ public class ElfController : MonoBehaviour
 
     public AudioSource ree;
 
+    public static int justDeadCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,20 +63,22 @@ public class ElfController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        int otherGameObjectLayer = other.transform.gameObject.layer;
+        if (justDeadCount < 1) {
+            int otherGameObjectLayer = other.transform.gameObject.layer;
 
-        Debug.Log(otherGameObjectLayer);
+            Debug.Log(otherGameObjectLayer);
 
-        if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer || otherGameObjectLayer == arrowLayer) {
-            if (!hit) {
-                Rigidbody otherRb = other.transform.parent.GetComponent<Rigidbody>();
-                if (otherGameObjectLayer == weaponLayer && otherRb.velocity.magnitude < 20) return;
+            if (otherGameObjectLayer == inMotionLayer || otherGameObjectLayer == weaponLayer || otherGameObjectLayer == arrowLayer) {
+                if (!hit) {
+                    Rigidbody otherRb = other.transform.parent.GetComponent<Rigidbody>();
+                    if (otherGameObjectLayer == weaponLayer && otherRb.velocity.magnitude < 20) return;
 
-                hit = true; 
-                Vector3 hitPoint = other.transform.position;
-                Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
-                EnableRagdoll();
-                ree.Play();
+                    hit = true; 
+                    Vector3 hitPoint = other.transform.position;
+                    Instantiate(hitEffect, hitPoint, Quaternion.Euler(Vector3.zero));
+                    EnableRagdoll();
+                    ree.Play();
+                }
             }
         }
     }
@@ -104,5 +108,12 @@ public class ElfController : MonoBehaviour
             rb.detectCollisions = true;
             rb.AddForce(opposite.normalized * 70, ForceMode.Impulse);;
         }
+
+        justDeadCount++;
+        Invoke("DecreaseJustDeadCount", 0.2f);
+    }
+
+    void DecreaseJustDeadCount() {
+        justDeadCount--;
     }
 }
