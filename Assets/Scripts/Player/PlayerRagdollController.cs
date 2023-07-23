@@ -68,7 +68,7 @@ public class PlayerRagdollController : MonoBehaviour
         if (other.gameObject.layer == arrowLayer) {
             float mag = other.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
             Debug.Log(other.gameObject.layer + ", " + mag);
-            if (mag > 20) {
+            if (mag > 0) {
                 hit = true;
 
                 Vector3 velocity = transform.position - crossbow.position;
