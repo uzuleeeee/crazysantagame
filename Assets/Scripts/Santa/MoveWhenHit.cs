@@ -89,6 +89,11 @@ public class MoveWhenHit : MonoBehaviour
                         am.Play("TreeHit");
                         Bounce();
                     }
+                    
+                    BreakController breakCon = other.transform.parent.gameObject.GetComponent<BreakController>();
+                    if (breakCon != null) {
+                        breakCon.Break(other.transform.position, other.transform.position, true);
+                    }
                 } else if (otherGameObjectLayer == weaponLayer) {
                     opposite = transform.InverseTransformPoint(otherRb.velocity);
                     intensity *= (otherRb.velocity.magnitude * 0.1f);

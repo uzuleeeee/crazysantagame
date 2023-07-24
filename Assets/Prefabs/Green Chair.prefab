@@ -73,11 +73,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bbd5d87394d48bb91dcd021b61a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondary: 0
+  probOfBreaking: 0.3
   hitEffect: {fileID: 2465684937024235583, guid: cf279af83c76e47b2b18f7421634c415, type: 3}
   broken: {fileID: 7222739630731274895, guid: a89a30285e4c24fb8a66042a79614fd7, type: 3}
   radius: 100
   force: 400
+  swing: 0
 --- !u!1001 &6885258881235866826
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class BreakController : MonoBehaviour
 {
+    public float probOfBreaking = 0.5f;
+
     public GameObject hitEffect;
     public GameObject broken;
     public float radius;
     public float force;
 
+    public bool swing;
+
     bool spawned = false;
 
-    int santaThrowColliderLayer, arrowLayer;
+    int santaThrowColliderLayer, arrowLayer, santaHitBoxLayer;
 
     // Start is called before the first frame update
     void Start()
     {
         spawned = false;
 
+        santaHitBoxLayer = LayerMask.NameToLayer("Santa Hitbox");
         santaThrowColliderLayer = LayerMask.NameToLayer("Santa Throw Collider");
         arrowLayer = LayerMask.NameToLayer("Arrow");
     }
@@ -28,7 +33,20 @@ public class BreakController : MonoBehaviour
         
     }
 
-    public void Break(Vector3 hitPoint, Vector3 hitEffectPoint) {
+    public void Break(Vector3 hitPoint, Vector3 hitEffectPoint, bool withProbability = false) {
+        if (!withProbability) {
+            ActuallyBreak(hitPoint, hitEffectPoint);
+        } else  {
+            float generatedProb = Random.Range(0f, 1f);
+            if (generatedProb < probOfBreaking) {
+                ActuallyBreak(hitPoint, hitEffectPoint);
+            }
+
+            Debug.Log(generatedProb + ", " + probOfBreaking);
+        }
+    }
+
+    void ActuallyBreak(Vector3 hitPoint, Vector3 hitEffectPoint) {
         spawned = true;
 
         GameObject child = gameObject.transform.GetChild(0).gameObject;
@@ -48,15 +66,22 @@ public class BreakController : MonoBehaviour
 
     void OnCollisionEnter(Collision collisionInfo) {
         if (!spawned) {
-            float mag = transform.GetComponent<Rigidbody>().velocity.magnitude;
-
             int layer = collisionInfo.gameObject.layer;
-            if (layer == santaThrowColliderLayer) {
-                if (mag > 5) {
-                    Break(transform.position, collisionInfo.transform.position);
+            Debug.Log("Layer: " + layer + ", " + swing);
+
+            if (!swing) {
+                float mag = transform.GetComponent<Rigidbody>().velocity.magnitude;
+                if (layer == santaThrowColliderLayer) {
+                    if (mag > 5) {
+                        Break(transform.position, collisionInfo.transform.position);
+                    }
+                } else if (layer == arrowLayer) {
+                    if (mag > 0) {
+                        Break(transform.position, collisionInfo.transform.position);
+                    }
                 }
-            } else if (layer == arrowLayer) {
-                if (mag > 0) {
+            } else {
+                if (layer == santaHitBoxLayer) {
                     Break(transform.position, collisionInfo.transform.position);
                 }
             }

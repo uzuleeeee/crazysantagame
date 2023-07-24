@@ -74,10 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bbd5d87394d48bb91dcd021b61a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  probOfBreaking: 0.9
   hitEffect: {fileID: 2465684937024235583, guid: cf279af83c76e47b2b18f7421634c415, type: 3}
   broken: {fileID: 1328470851975530057, guid: 8e0671ebfa46d4f629900648e1bbc84e, type: 3}
   radius: 25
   force: 500
+  swing: 0
 --- !u!114 &-3284468917779826391
 MonoBehaviour:
   m_ObjectHideFlags: 0

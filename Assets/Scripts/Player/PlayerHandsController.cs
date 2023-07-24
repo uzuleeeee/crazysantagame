@@ -16,7 +16,7 @@ public class PlayerHandsController : MonoBehaviour
     public Transform weaponLoc, weaponThrow;
     LayerMask weaponLayerMask;
     Renderer weaponRenderer;
-    GameObject weapon, weaponChild;
+    public GameObject weapon, weaponChild;
     Rigidbody weaponRb;
 
     public GameObject leftHand, rightHand;
@@ -55,6 +55,8 @@ public class PlayerHandsController : MonoBehaviour
 
     void Update()
     {
+        hasWeapon = weapon != null;
+
         anim.SetBool(hasWeaponHash, hasWeapon);
         anim.SetBool(isRunningHash, Input.GetKey("w"));
 
