@@ -67,9 +67,9 @@ public class BreakController : MonoBehaviour
             int layer = collisionInfo.gameObject.layer;
 
             if (!swing) {
-                float mag = transform.GetComponent<Rigidbody>().velocity.magnitude;
+                float mag = transform.GetComponent<Rigidbody>().velocity.sqrMagnitude;
                 if (layer == santaThrowColliderLayer) {
-                    if (mag > 5) {
+                    if (mag > 25) {
                         Break(transform.position, collisionInfo.transform.position);
                     }
                 } else if (layer == arrowLayer) {
