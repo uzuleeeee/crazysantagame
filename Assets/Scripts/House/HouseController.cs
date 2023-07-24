@@ -10,6 +10,8 @@ public class HouseController : MonoBehaviour
     public HousePhysicsController housePhysicsCon;
     HouseAppearanceController houseAppearanceCon;
 
+    public SpawnController spawnCon;
+
     void Start() {
         houseSwitcher = GetComponent<HouseSwitcher>();
 
@@ -34,12 +36,12 @@ public class HouseController : MonoBehaviour
 
     public void EnableHouse() {
         housePhysicsCon.EnableHouse();
-        currentHouse.GetComponentInChildren<TreeSpawner>().StartSpawning();
         houseAppearanceCon.TurnBlack();
     }
 
     void GetControllers() {
         housePhysicsCon = currentHouse.GetComponentInChildren<HousePhysicsController>();
         houseAppearanceCon = currentHouse.GetComponentInChildren<HouseAppearanceController>();
+        spawnCon = currentHouse.GetComponentInChildren<SpawnController>();
     }
 }

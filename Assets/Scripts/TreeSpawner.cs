@@ -7,11 +7,13 @@ public class TreeSpawner : MonoBehaviour
     public GameObject tree;
     public Transform spawnPoint;
 
-    public int treeCount;
-
     Material treeMat;
 
-    public float maxTreeCount = 1;
+    public int treeCount;
+    int maxTreeCount;
+    public float interval;
+    bool startSpawn = false;
+    float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +24,22 @@ public class TreeSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        maxTreeCount += Time.deltaTime / 100;
+        if (startSpawn) {
+            timer += Time.deltaTime;
+            if (timer > interval) {
+                timer = 0;
+                SpawnTree(maxTreeCount);
+            }
+        }
     }
 
-    public void StartSpawning() {
-        InvokeRepeating("SpawnTree", 10, 10);
+    public void StartSpawning(float interval, int maxTreeCount) {
+        startSpawn = true;
+        this.interval = interval;
+        this.maxTreeCount = maxTreeCount;
     }
 
-    void SpawnTree() {
+    void SpawnTree(int maxTreeCount) {
         if (treeCount < maxTreeCount) {
             Instantiate(tree, spawnPoint.position, spawnPoint.rotation);
             Shake();

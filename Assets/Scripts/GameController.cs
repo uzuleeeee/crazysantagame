@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
                 houseCon.EnableHouse();
                 playerRDCon.DisableRagdoll();
                 santaCon.Enable();
+                houseCon.spawnCon.FindSanta();
             }
         }
 

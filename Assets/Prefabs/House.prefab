@@ -17192,6 +17192,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0735de5cca8ec4211b5d1ca387946aad, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7398598760122060757}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0735de5cca8ec4211b5d1ca387946aad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3370486576026661547}
   m_SourcePrefab: {fileID: 100100000, guid: 0735de5cca8ec4211b5d1ca387946aad, type: 3}
 --- !u!1 &7046317996025709439 stripped
 GameObject:
@@ -17213,7 +17216,7 @@ MonoBehaviour:
   tree: {fileID: 5763643052236945720, guid: 0afa335ed0a6144eca20ccbe5a3d06c8, type: 3}
   spawnPoint: {fileID: 4024430581045634769}
   treeCount: 0
-  maxTreeCount: 1
+  interval: 0
 --- !u!65 &4227153854516060464
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17256,6 +17259,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.021022953, y: 0.025158057, z: 0.10322878}
   m_Center: {x: -0.00030479836, y: 0.0029416282, z: 0.05166059}
+--- !u!114 &3370486576026661547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7046317996025709439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb32ac9e67d14e6c800ba7ceb7899ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7674798209318672837 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0735de5cca8ec4211b5d1ca387946aad, type: 3}
