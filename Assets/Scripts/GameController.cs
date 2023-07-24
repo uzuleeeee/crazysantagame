@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     {
         del = GetComponent<Delete>();
         treeCon = GetComponent<TreeController>();
-        am = GetComponentInChildren<AudioManager>();
+        am = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         cursorCon = GetComponent<CursorController>();
         cursorCon.EnableCursor(0);
     }
