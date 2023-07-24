@@ -23,7 +23,6 @@ public class HousePhysicsController : MonoBehaviour
     }
 
     public void EnableHouse() {
-        Debug.Log("Enable house in hpc");
         foreach (Collider col in colliders) {
             if (col != null) {
                 col.enabled = true;
@@ -39,7 +38,6 @@ public class HousePhysicsController : MonoBehaviour
     }
 
     void DisableHouse() {
-        Debug.Log("DISABLE house in hpc");
         foreach (Collider col in colliders) {
             col.enabled = false;
         }

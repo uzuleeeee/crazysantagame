@@ -18,8 +18,6 @@ public class SpawnController : MonoBehaviour
     }
 
     public void FindSanta() {
-
-        //Debug.Log("Find santa");
         foundSanta = true;
 
         santaCon = GameObject.FindWithTag("Santa").GetComponent<SantaController>();
@@ -29,12 +27,8 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(foundSanta);
-        
         if (foundSanta) {
             health = santaCon.health;
-
-            Debug.Log(health / originalHealth);
 
             if (health / originalHealth < 0.7f) {
                 treeSpawner.StartSpawning(2, 3);

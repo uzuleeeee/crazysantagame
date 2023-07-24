@@ -35,12 +35,7 @@ public class PlayerRagdollController : MonoBehaviour
         playerCon = GetComponent<PlayerController>();
         playerHandsCon = GetComponent<PlayerHandsController>();
 
-        //crossbow = GameObject.FindWithTag("Arrow Point").transform;
-
         arrowLayer = LayerMask.NameToLayer("Arrow");
-        Debug.Log("Arrow layer: " + arrowLayer);
-
-        //DisableRagdoll();
     }
 
     // Update is called once per frame
@@ -66,13 +61,15 @@ public class PlayerRagdollController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.layer == arrowLayer) {
-            float mag = other.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-            Debug.Log(other.gameObject.layer + ", " + mag);
-            if (mag > 0) {
-                hit = true;
+            Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
+            if (otherRb != null) {
+                float mag = otherRb.velocity.magnitude;
+                if (mag > 0) {
+                    hit = true;
 
-                Vector3 velocity = transform.position - crossbow.position;
-                EnableRagdoll(new Vector3(velocity.x, 0, velocity.z));
+                    Vector3 velocity = transform.position - crossbow.position;
+                    EnableRagdoll(new Vector3(velocity.x, 0, velocity.z));
+                }
             }
         }
     }

@@ -41,8 +41,6 @@ public class BreakController : MonoBehaviour
             if (generatedProb < probOfBreaking) {
                 ActuallyBreak(hitPoint, hitEffectPoint);
             }
-
-            Debug.Log(generatedProb + ", " + probOfBreaking);
         }
     }
 
@@ -67,7 +65,6 @@ public class BreakController : MonoBehaviour
     void OnCollisionEnter(Collision collisionInfo) {
         if (!spawned) {
             int layer = collisionInfo.gameObject.layer;
-            Debug.Log("Layer: " + layer + ", " + swing);
 
             if (!swing) {
                 float mag = transform.GetComponent<Rigidbody>().velocity.magnitude;

@@ -23,14 +23,11 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //camCon.Enter();
         del = GetComponent<Delete>();
         treeCon = GetComponent<TreeController>();
         am = GetComponentInChildren<AudioManager>();
         cursorCon = GetComponent<CursorController>();
-
         cursorCon.EnableCursor(0);
-        //camCon.MainMenu();
     }
 
     // Update is called once per frame
@@ -39,7 +36,6 @@ public class GameController : MonoBehaviour
         if (!changed) {
             if (camCon.MainMenu() && Input.GetMouseButtonDown(0)) {
                 cursorCon.DisableCursor();
-                Debug.Log("------------enter house");
                 camCon.Enter();
                 houseCon.EnableHouse();
                 playerRDCon.DisableRagdoll();

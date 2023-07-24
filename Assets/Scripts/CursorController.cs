@@ -11,12 +11,10 @@ public class CursorController : MonoBehaviour
     void ActuallyEnableCursor() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("enablelelee");
     }
 
     public void DisableCursor() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Debug.Log("DISABLE");
     }
 }
