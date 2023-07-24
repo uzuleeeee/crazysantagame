@@ -31,7 +31,7 @@ public class CrossbowController : MonoBehaviour
     Animator anim;
     int trDrawHash, trReleaseHash;
     
-    void Start()
+    void Awake()
     {
         am = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 

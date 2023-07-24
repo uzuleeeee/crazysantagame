@@ -26,7 +26,7 @@ public class SantaController : MonoBehaviour
     bool dead = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         am = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         soundDuration = Random.Range(soundDurationRange.x, soundDurationRange.y);
