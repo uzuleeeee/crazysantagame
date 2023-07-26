@@ -49,8 +49,8 @@ public class BreakController : MonoBehaviour
 
         GameObject child = gameObject.transform.GetChild(0).gameObject;
         GameObject spawnedBroken = Instantiate(broken, child.transform.position, child.transform.rotation);
-
         spawnedBroken.transform.localScale = child.transform.localScale;
+        
         foreach (Rigidbody rb in spawnedBroken.GetComponentsInChildren<Rigidbody>()) {
             if (rb != null) {
                 rb.AddExplosionForce(force, hitPoint, radius);
