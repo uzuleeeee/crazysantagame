@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3473156984500076355}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6431553631533525937
 Rigidbody:
@@ -158,9 +158,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 7508a6cd1a24c4b0ebb1b27def8e1e26, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7508a6cd1a24c4b0ebb1b27def8e1e26, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cbaa65fc7f59742be8d1ad32e3d5b446, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 7508a6cd1a24c4b0ebb1b27def8e1e26, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f8f557b77238444682a3669c8166a47, type: 2}
     - target: {fileID: 919132149155446097, guid: 7508a6cd1a24c4b0ebb1b27def8e1e26, type: 3}
       propertyPath: m_Name
       value: RoundTable

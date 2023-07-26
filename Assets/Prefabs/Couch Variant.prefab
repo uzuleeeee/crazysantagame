@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4f98413939f4747609e9d2aa1c981950, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 571f2138f14754910be5f24e27af19d5, type: 2}
+      objectReference: {fileID: 2100000, guid: 0f37bd5c70c7d494cba4e5f8ac23ab6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 4f98413939f4747609e9d2aa1c981950, type: 3}
       propertyPath: m_Name
       value: Couch Variant
