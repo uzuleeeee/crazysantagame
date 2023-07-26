@@ -162,7 +162,7 @@ public class TreeController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotTarget, rotSpeed * Time.deltaTime);
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosOnSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(newPos, 0.5f);
