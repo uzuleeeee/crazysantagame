@@ -6,19 +6,44 @@ public class PlayerMovementController : MonoBehaviour
 {
     Rigidbody rb;
 
+    public float groundDrag, airDrag;
+
+    [Header("Horizontal movement")]
     float moveSpeed;
     public int walkSpeed, runSpeed;
     bool isRunning = false;
     public int walkToRunTransitionSpeed = 20;
+    public float airMultiplier = 0.2f;
+
+    [Header("Jump")]
+    public float jumpForce;
+    bool isReadyToJump = true;
+    public float jumpCoolDown = 0.5f;
+
+    [Header("Latch")]
+    public LayerMask latchLayer;
+    public Vector3 latchTopRaycast, latchBottomRaycast;
+    public float latchRaycastLength;
+    public bool isLatchable;
+
+    [Header("Ground Check")]
+    public LayerMask groundLayer;
+    public Vector3 raycastOffset = new Vector3(0, 1, 0);
+    public float raycastLength = 1.1f;
+    bool isGrounded;
+
+    [Header("Breath")]
     bool isTired = false;
     float breath = 35;
     public float breathCapacity = 35;
     public int breathGainSpeed, breathLoseSpeed;
 
+    [Header("Keys")]
+    public KeyCode runKey = KeyCode.LeftShift;
+    public KeyCode jumpKey = KeyCode.Space;
+
     float horizontalInput, verticalInput;
     Vector3 moveDirection;
-
-    public KeyCode runKey = KeyCode.LeftShift;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +57,16 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         isRunning = Input.GetKey(runKey);
+        isGrounded = Physics.Raycast(transform.position + raycastOffset, Vector3.down, raycastLength, groundLayer);
+        Debug.DrawRay(transform.position + raycastOffset, Vector3.down * raycastLength, Color.red);
+
+        bool topRay = Physics.Raycast(transform.position + latchTopRaycast, transform.forward, latchRaycastLength, latchLayer);
+        bool bottomRay = Physics.Raycast(transform.position + latchBottomRaycast, transform.forward, latchRaycastLength, latchLayer);
+        Debug.DrawRay(transform.position + latchTopRaycast, transform.forward * latchRaycastLength, Color.red);
+        Debug.DrawRay(transform.position + latchBottomRaycast, transform.forward * latchRaycastLength, Color.red);
+        isLatchable = !topRay && bottomRay;
+
+        Debug.Log(isLatchable);
 
         // Calculate breath
         if (isRunning) {
@@ -49,13 +84,34 @@ public class PlayerMovementController : MonoBehaviour
             moveSpeed -= Time.deltaTime * walkToRunTransitionSpeed;
         }
         moveSpeed = Mathf.Clamp(moveSpeed, walkSpeed, runSpeed);
+        if (!isGrounded) {
+            moveSpeed *= airMultiplier;
+        }
 
         // Calculate move direction
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
 
+        // Adjust drag
+        if (isGrounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = airDrag;
+
         // Move
         rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Force);
+
+        if (isGrounded && isReadyToJump && Input.GetKey(jumpKey)) {
+            if (isReadyToJump && Input.GetKey(jumpKey)) {
+                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+                isReadyToJump = false;
+                Invoke("ResetIsReadyToJump", jumpCoolDown);
+            }
+        }
+    }
+
+    void ResetIsReadyToJump() {
+        isReadyToJump = true;
     }
 }
