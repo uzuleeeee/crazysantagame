@@ -9,7 +9,7 @@ public class PlayerMovementController : MonoBehaviour
     public float groundDrag, airDrag;
 
     [Header("Horizontal movement")]
-    float moveSpeed;
+    public float moveSpeed;
     public int walkSpeed, runSpeed;
     bool isRunning = false;
     public int walkToRunTransitionSpeed = 20;
@@ -24,8 +24,9 @@ public class PlayerMovementController : MonoBehaviour
     [Header("Latch")]
     public LayerMask latchLayer;
     public Vector3 latchTopRaycast, latchBottomRaycast;
+    RaycastHit latchHit;
     public float latchRaycastLength;
-    public bool isLatching;
+    bool isLatching;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
@@ -55,18 +56,19 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log(isGrounded);
+
         isRunning = Input.GetKey(runKey);
         isGrounded = Physics.Raycast(transform.position + raycastOffset, Vector3.down, raycastLength, groundLayer);
         Debug.DrawRay(transform.position + raycastOffset, Vector3.down * raycastLength, Color.red);
 
         bool topRay = Physics.Raycast(transform.position + latchTopRaycast, transform.forward, latchRaycastLength, latchLayer);
-        bool bottomRay = Physics.Raycast(transform.position + latchBottomRaycast, transform.forward, latchRaycastLength, latchLayer);
+        bool bottomRay = Physics.Raycast(transform.position + latchBottomRaycast, transform.forward, out latchHit, latchRaycastLength, latchLayer);
         Debug.DrawRay(transform.position + latchTopRaycast, transform.forward * latchRaycastLength, Color.red);
         Debug.DrawRay(transform.position + latchBottomRaycast, transform.forward * latchRaycastLength, Color.red);
-        isLatching = !topRay && bottomRay && rb.velocity.y < 0;
-        Debug.Log(isLatching);
+        isLatching = !topRay && bottomRay;
 
         // Calculate breath
         if (isRunning && !isLatching) {
@@ -86,11 +88,10 @@ public class PlayerMovementController : MonoBehaviour
         moveSpeed = Mathf.Clamp(moveSpeed, walkSpeed, runSpeed);
         if (!isGrounded) {
             moveSpeed *= airMultiplier;
-        } else if (isLatching) {
-            moveSpeed = 0;
         }
 
         if (isLatching && !Input.GetKey(jumpKey)) {
+            rb.velocity = Vector3.zero;
             rb.constraints = RigidbodyConstraints.FreezeAll;
         } else {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -128,5 +129,13 @@ public class PlayerMovementController : MonoBehaviour
 
     void ResetIsReadyToJump() {
         isReadyToJump = true;
+    }
+
+    public bool GetIsLatching() {
+        return isLatching;
+    }
+
+    public Vector3 GetLatchHitPosition() {
+        return latchHit.point;
     }
 }
