@@ -16,7 +16,8 @@ public class PlayerMovementController : MonoBehaviour
     public float airMultiplier = 0.2f;
 
     [Header("Jump")]
-    public float jumpForce;
+    float jumpForce;
+    public float normalJumpForce, latchJumpForce;
     bool isReadyToJump = true;
     public float jumpCoolDown = 0.5f;
 
@@ -24,7 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     public LayerMask latchLayer;
     public Vector3 latchTopRaycast, latchBottomRaycast;
     public float latchRaycastLength;
-    public bool isLatchable;
+    public bool isLatching;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
@@ -64,12 +65,11 @@ public class PlayerMovementController : MonoBehaviour
         bool bottomRay = Physics.Raycast(transform.position + latchBottomRaycast, transform.forward, latchRaycastLength, latchLayer);
         Debug.DrawRay(transform.position + latchTopRaycast, transform.forward * latchRaycastLength, Color.red);
         Debug.DrawRay(transform.position + latchBottomRaycast, transform.forward * latchRaycastLength, Color.red);
-        isLatchable = !topRay && bottomRay;
-
-        Debug.Log(isLatchable);
+        isLatching = !topRay && bottomRay && rb.velocity.y < 0;
+        Debug.Log(isLatching);
 
         // Calculate breath
-        if (isRunning) {
+        if (isRunning && !isLatching) {
             breath -= Time.deltaTime * breathLoseSpeed;
         } else {
             breath += Time.deltaTime * breathGainSpeed;
@@ -86,6 +86,14 @@ public class PlayerMovementController : MonoBehaviour
         moveSpeed = Mathf.Clamp(moveSpeed, walkSpeed, runSpeed);
         if (!isGrounded) {
             moveSpeed *= airMultiplier;
+        } else if (isLatching) {
+            moveSpeed = 0;
+        }
+
+        if (isLatching && !Input.GetKey(jumpKey)) {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        } else {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
         // Calculate move direction
@@ -99,11 +107,18 @@ public class PlayerMovementController : MonoBehaviour
         else
             rb.drag = airDrag;
 
-        // Move
+        // Horizontal motion
         rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Force);
 
-        if (isGrounded && isReadyToJump && Input.GetKey(jumpKey)) {
+        // Jump
+        if (((isGrounded && isReadyToJump) || isLatching) && Input.GetKey(jumpKey)) {
             if (isReadyToJump && Input.GetKey(jumpKey)) {
+                if (isLatching) {
+                    jumpForce = latchJumpForce;
+                } else {
+                    jumpForce = normalJumpForce;
+                }
+
                 rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
                 isReadyToJump = false;
                 Invoke("ResetIsReadyToJump", jumpCoolDown);
