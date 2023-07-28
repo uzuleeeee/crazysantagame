@@ -10,6 +10,9 @@ public class HouseAppearanceController : MonoBehaviour
     Shader baseShader;
     public Material outlineMaterial;
 
+    public float brightness;
+    public float outline;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +25,11 @@ public class HouseAppearanceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ChangeBrightness(brightness);
     }
 
     public void TurnBlack() {
-        ChangeBrightness(0.4f);
+        //ChangeBrightness(0.4f);
     }
 
     void ChangeBrightness(float brightness) {
@@ -38,6 +41,6 @@ public class HouseAppearanceController : MonoBehaviour
             }
         }
 
-        outlineMaterial.SetFloat("_Brightness", brightness);
+        outlineMaterial.SetFloat("_Brightness", outline);
     }
 }
