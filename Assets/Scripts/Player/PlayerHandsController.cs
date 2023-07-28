@@ -19,12 +19,14 @@ public class PlayerHandsController : MonoBehaviour
     Renderer weaponRenderer;
     public GameObject weapon, weaponChild;
     Rigidbody weaponRb;
+    WeaponController weaponCon;
+    float weaponSpeed = 1;
 
     public GameObject leftHand, rightHand;
     public Transform leftHandIK, rightHandIK;
 
     int inHandLayer, inMotionLayer, weaponLayer;
-    int isRunningHash, hasWeaponHash, punchNumHash, punchHash, throwHash, isLatchingHash;
+    int isRunningHash, hasWeaponHash, punchNumHash, punchHash, throwHash, isLatchingHash, speedHash;
 
     int punchNum;
 
@@ -64,6 +66,7 @@ public class PlayerHandsController : MonoBehaviour
         punchHash = Animator.StringToHash("punch");
         throwHash = Animator.StringToHash("throw");
         isLatchingHash = Animator.StringToHash("isLatching");
+        speedHash = Animator.StringToHash("speed");
 
         latchRayStart = playerMovementCon.latchBottomRaycast;
         latchLayer = playerMovementCon.latchLayer;
@@ -106,12 +109,16 @@ public class PlayerHandsController : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 am.Play("PlayerSwing");
                 if (!hasWeapon) {
+                    anim.SetFloat(speedHash, 1);
+
                     Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
                     if (Physics.Raycast(ray, out hit, 4, weaponLayerMask.value)) {
                         weapon = hit.transform.gameObject;
                         weaponChild = weapon.transform.GetChild(0).gameObject;
+                        weaponCon = weaponChild.GetComponent<WeaponController>();
+                        weaponSpeed = weaponCon.GetSpeed();
 
                         weaponRb = weapon.GetComponent<Rigidbody>();
 
@@ -129,6 +136,8 @@ public class PlayerHandsController : MonoBehaviour
                         punchNum = Random.Range(2, 4);
                         anim.SetInteger(punchNumHash, punchNum);
                     }
+                } else {
+                    anim.SetFloat(speedHash, weaponSpeed);
                 }
                 anim.SetBool(punchHash, true);
             }
@@ -163,6 +172,7 @@ public class PlayerHandsController : MonoBehaviour
     public void Throw() {
         am.Play("PlayerThrow");
 
+        anim.SetFloat(speedHash, weaponSpeed);
         weapon.transform.parent = houseCon.currentHouse.transform;
         weaponRb.isKinematic = false;
         weaponChild.layer = weaponLayer;

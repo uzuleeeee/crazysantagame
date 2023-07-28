@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 7952315368813391121}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3597945849753895107
 Rigidbody:
@@ -74,11 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bbd5d87394d48bb91dcd021b61a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondary: 0
+  probOfBreaking: 0.5
   hitEffect: {fileID: 2465684937024235583, guid: cf279af83c76e47b2b18f7421634c415, type: 3}
   broken: {fileID: 4824211699646064918, guid: 96a49e984870c4c7dab2a9a25abfdbe7, type: 3}
   radius: 100
   force: 350
+  swing: 0
 --- !u!114 &-1259294968114600399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  speed: 0.7
 --- !u!4 &7952315368813391121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cdff8e66a7d464fb0a2348bbb199f8f7, type: 3}
