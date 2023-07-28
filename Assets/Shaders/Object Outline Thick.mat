@@ -57,7 +57,7 @@ Material:
     - _Outline: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 1.15
+    - _Scale: 1.25
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
