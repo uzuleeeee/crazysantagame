@@ -148,7 +148,6 @@ public class PlayerHandsController : MonoBehaviour
                 anim.SetBool(throwHash, true);
             }
         } else {
-            Debug.Log("Latchin ------------");
             anim.SetBool(isRunningHash, false);
             anim.SetBool(punchHash, false);
             anim.SetBool(throwHash, false);

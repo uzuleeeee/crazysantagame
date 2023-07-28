@@ -58,8 +58,6 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(isGrounded);
-
         isRunning = Input.GetKey(runKey);
         isGrounded = Physics.Raycast(transform.position + raycastOffset, Vector3.down, raycastLength, groundLayer);
         Debug.DrawRay(transform.position + raycastOffset, Vector3.down * raycastLength, Color.red);
