@@ -5,8 +5,10 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     public float transitionSpeed;
-    float transitionCurrent;
+    float transitionCurrent, transitionTarget;
     public AnimationCurve transitionCurve;
+
+    float duration;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,15 @@ public class TimeController : MonoBehaviour
 
     public void BounceTime() {
         Time.timeScale = 0.05f;
+        transitionCurrent = 0;
+    }
+
+    public void StopTime(float delay = 0f) {
+        Invoke("ActuallyStopTime", delay);
+    }
+
+    void ActuallyStopTime() {
+        Time.timeScale = 0.01f;
         transitionCurrent = 0;
     }
 }

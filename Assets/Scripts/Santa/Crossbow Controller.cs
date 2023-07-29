@@ -43,6 +43,8 @@ public class CrossbowController : MonoBehaviour
 
         trDrawHash = Animator.StringToHash("TrDraw");
         trReleaseHash = Animator.StringToHash("TrRelease");
+
+        transitionCurrent = 1;
     }
 
     void Update()

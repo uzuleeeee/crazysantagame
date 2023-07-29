@@ -37,10 +37,11 @@ public class GameController : MonoBehaviour
             if (camCon.MainMenu() && Input.GetMouseButtonDown(0)) {
                 cursorCon.DisableCursor();
                 camCon.Enter();
-                houseCon.EnableHouse();
+                houseCon.EnableHouse(1f);
                 playerRDCon.DisableRagdoll();
-                santaCon.Enable();
-                houseCon.spawnCon.FindSanta();
+                santaCon.Enable(1f);
+                timeCon.StopTime(1.1f);
+                camCon.FPC(1.1f);
             }
         }
 
@@ -63,5 +64,11 @@ public class GameController : MonoBehaviour
         changed = false;
         playerRDCon.ResetHit();
         del.ResetDelete();
+    }
+
+    void StopTransition() {
+        if (camCon.IsComplete()) {
+            timeCon.StopTime();
+        }
     }
 }

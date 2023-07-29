@@ -25,7 +25,7 @@ public class ArrowController : MonoBehaviour
         source = GetComponent<Cinemachine.CinemachineImpulseSource>();
         source.GenerateImpulse(Camera.main.transform.forward);
 
-        elfLayer = LayerMask.NameToLayer("Elf");
+        elfLayer = LayerMask.NameToLayer("Ragdoll");
 
         transform.parent = GameObject.FindWithTag("World").transform;
 
@@ -61,6 +61,7 @@ public class ArrowController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Rigidbody>() == null && collision.gameObject.layer != elfLayer) {
+            Debug.Log(collision.gameObject.name);
             Freeze();
             am.Play("ArrowHit");
         }

@@ -64,7 +64,11 @@ public class SantaController : MonoBehaviour
         Invoke("Enable", 6);
     }
 
-    public void Enable() {
+    public void Enable(float delay = 0) {
+        Invoke("ActuallyEnable", delay);
+    }
+
+    void ActuallyEnable() {
         gameObject.SetActive(true);
         transform.position = spawnPoint.position;
         stateManager.Reset();

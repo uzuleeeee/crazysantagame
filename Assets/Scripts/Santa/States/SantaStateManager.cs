@@ -11,6 +11,7 @@ public class SantaStateManager : MonoBehaviour
 
     [Header("Player")]
     public Transform player;
+    public Transform ragdoll;
 
     [Header("Movement")]
     public float rotSpeed = 140;
@@ -29,7 +30,7 @@ public class SantaStateManager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        currentState = drawState;
+        currentState = releaseState;
         currentState.StartState(this);
     }
 

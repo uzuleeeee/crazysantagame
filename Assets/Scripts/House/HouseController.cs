@@ -9,8 +9,7 @@ public class HouseController : MonoBehaviour
     HouseSwitcher houseSwitcher;
     public HousePhysicsController housePhysicsCon;
     HouseAppearanceController houseAppearanceCon;
-
-    public SpawnController spawnCon;
+    SiblingController siblingCon;
 
     void Start() {
         houseSwitcher = GetComponent<HouseSwitcher>();
@@ -34,14 +33,15 @@ public class HouseController : MonoBehaviour
         GetControllers();
     }
 
-    public void EnableHouse() {
+    public void EnableHouse(float delay) {
         housePhysicsCon.EnableHouse();
         houseAppearanceCon.TurnBlack();
+        siblingCon.ActivateSibling(delay);
     }
 
     void GetControllers() {
         housePhysicsCon = currentHouse.GetComponentInChildren<HousePhysicsController>();
         houseAppearanceCon = currentHouse.GetComponentInChildren<HouseAppearanceController>();
-        spawnCon = currentHouse.GetComponentInChildren<SpawnController>();
+        siblingCon = currentHouse.GetComponentInChildren<SiblingController>();
     }
 }

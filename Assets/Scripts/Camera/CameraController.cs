@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 {
     Camera cam;
     public CinemachineVirtualCamera[] cvcs;
+    public CinemachineBrain brain;
 
     public float speed;
 
@@ -29,6 +30,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(IsComplete());
+
         if (secondCamPivot != null) {
             secondCamPivot.LookAt(new Vector3(santa.position.x, secondCamPivot.position.y, santa.position.z));
         }
@@ -53,12 +56,20 @@ public class CameraController : MonoBehaviour
     }
 
     public void Enter() {
-        SetCamTo(0, 0);
+        SetCamTo(3, 0);
+    }
+
+    public void FPC(float delay) {
+        SetCamTo(0, delay);
     }
 
     public void Exit() {
         SetCamTo(1, 0);
         SetCamTo(2, 0.7f);
+    }
+
+    public bool IsComplete() {
+        return !brain.IsBlending;
     }
 
     void SpinTPC() {
