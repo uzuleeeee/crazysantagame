@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     public UpdateReferences updateRefs;
     public ArrowController arrowCon;
 
+    public GameObject textBubble;
+
     Delete del;
     TreeController treeCon;
 
