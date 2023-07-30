@@ -71,6 +71,7 @@ public class SantaController : MonoBehaviour
     void ActuallyEnable() {
         gameObject.SetActive(true);
         transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
         stateManager.Reset();
     }
 

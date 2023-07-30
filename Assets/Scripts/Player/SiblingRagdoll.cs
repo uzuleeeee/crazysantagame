@@ -6,6 +6,7 @@ public class SiblingRagdoll : MonoBehaviour
 {
     Rigidbody[] rbs;
     Rigidbody rb;
+    Collider col;
     
     int arrowLayer;
 
@@ -14,6 +15,7 @@ public class SiblingRagdoll : MonoBehaviour
     {
         rbs = GetComponentsInChildren<Rigidbody>();
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
 
         foreach (Rigidbody rb in rbs) {
             rb.isKinematic = true;
@@ -30,17 +32,14 @@ public class SiblingRagdoll : MonoBehaviour
     }
 
     void EnableRagdoll() {
-        Debug.Log("enabled ragdoll");
-
         foreach (Rigidbody rb in rbs) {
             rb.isKinematic = false;
         }
-
         rb.AddForce(-transform.forward * 500f, ForceMode.Impulse);
+        Destroy(gameObject, 0.2f);
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Collision" + other.gameObject.layer + ", " + other.gameObject.name);
         if (other.gameObject.layer == arrowLayer) {
             EnableRagdoll();
         }

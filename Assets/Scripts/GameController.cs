@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     AudioManager am;
     CursorController cursorCon;
+    public TextController textCon;
     public CameraController camCon;
     public PlayerRagdollController playerRDCon;
     public PostController postCon;
@@ -14,8 +15,6 @@ public class GameController : MonoBehaviour
     public SantaController santaCon;
     public UpdateReferences updateRefs;
     public ArrowController arrowCon;
-
-    public GameObject textBubble;
 
     Delete del;
     TreeController treeCon;
@@ -44,6 +43,8 @@ public class GameController : MonoBehaviour
                 santaCon.Enable(1f);
                 timeCon.StopTime(1.1f);
                 camCon.FPC(1.1f);
+                //textCon.TextSetActive(true, 0.9f);
+                //textCon.TextSetActive(false, 2f);
             }
         }
 
@@ -66,11 +67,5 @@ public class GameController : MonoBehaviour
         changed = false;
         playerRDCon.ResetHit();
         del.ResetDelete();
-    }
-
-    void StopTransition() {
-        if (camCon.IsComplete()) {
-            timeCon.StopTime();
-        }
     }
 }

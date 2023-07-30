@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6206336483674902857}
   - component: {fileID: 8589196404386622020}
   - component: {fileID: 1387359841292036951}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Couch_cell.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408070174473876862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cab0b8e89f94b5a85ac3c1a5416fbf, type: 3}
   m_Name: 
@@ -272,7 +272,7 @@ Transform:
   - {fileID: 1430276024337001258}
   - {fileID: 6046099729155874095}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 88.338}
 --- !u!114 &-5446568287655678251
 MonoBehaviour:
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 2601547027482435184}
   - component: {fileID: 2304831766796706039}
   - component: {fileID: 2538771135875405519}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Couch_cell.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3668520435435956001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cab0b8e89f94b5a85ac3c1a5416fbf, type: 3}
   m_Name: 
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 1186556466711442133}
   - component: {fileID: 4318045637923183082}
   - component: {fileID: 1219368148091426458}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Couch_cell.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7259887865802819378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87cab0b8e89f94b5a85ac3c1a5416fbf, type: 3}
   m_Name: 
