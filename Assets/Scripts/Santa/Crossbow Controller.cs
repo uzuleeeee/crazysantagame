@@ -49,7 +49,7 @@ public class CrossbowController : MonoBehaviour
 
     void Update()
     {
-        rotTarget = Quaternion.LookRotation(player.position - holder.position + Vector3.up);
+        rotTarget = Quaternion.LookRotation(player.position - holder.position + new Vector3(0, 2.1f, 0));
 
         transitionCurrent = Mathf.MoveTowards(transitionCurrent, transitionTarget, transitionSpeed * Time.deltaTime);
         holder.localPosition = Vector3.Lerp(downPos, upPos, transitionCurve.Evaluate(transitionCurrent));
