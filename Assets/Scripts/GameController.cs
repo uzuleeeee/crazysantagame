@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
                 houseCon.EnableHouse(1f);
                 playerRDCon.DisableRagdoll();
                 santaCon.Enable(1f);
-                timeCon.StopTime(1.1f);
+                timeCon.StopTime(1.2f);
                 camCon.FPC(1.1f);
                 //textCon.TextSetActive(true, 0.9f);
                 //textCon.TextSetActive(false, 2f);

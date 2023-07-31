@@ -30,7 +30,7 @@ public class SantaStateManager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        currentState = releaseState;
+        currentState = drawState;
         currentState.StartState(this);
     }
 

@@ -37,7 +37,7 @@ public class TimeController : MonoBehaviour
     }
 
     void ActuallyStopTime() {
-        Time.timeScale = 0.01f;
+        Time.timeScale = 0.04f;
         transitionCurrent = 0;
     }
 }
