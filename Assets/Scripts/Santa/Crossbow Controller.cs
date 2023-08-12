@@ -30,6 +30,8 @@ public class CrossbowController : MonoBehaviour
     public Transform holder;
     Animator anim;
     int trDrawHash, trReleaseHash;
+
+    public SantaController santaCon;
     
     void Awake()
     {
@@ -49,11 +51,13 @@ public class CrossbowController : MonoBehaviour
 
     void Update()
     {
-        rotTarget = Quaternion.LookRotation(player.position - holder.position + new Vector3(0, 2.1f, 0));
+        if (santaCon.dead == false) {
+            rotTarget = Quaternion.LookRotation(player.position - holder.position + new Vector3(0, 2.1f, 0));
 
-        transitionCurrent = Mathf.MoveTowards(transitionCurrent, transitionTarget, transitionSpeed * Time.deltaTime);
-        holder.localPosition = Vector3.Lerp(downPos, upPos, transitionCurve.Evaluate(transitionCurrent));
-        holder.rotation = Quaternion.Lerp(Quaternion.Euler(downRotation + new Vector3(0, holder.eulerAngles.y, 0)), rotTarget, transitionCurve.Evaluate(transitionCurrent));
+            transitionCurrent = Mathf.MoveTowards(transitionCurrent, transitionTarget, transitionSpeed * Time.deltaTime);
+            holder.localPosition = Vector3.Lerp(downPos, upPos, transitionCurve.Evaluate(transitionCurrent));
+            holder.rotation = Quaternion.Lerp(Quaternion.Euler(downRotation + new Vector3(0, holder.eulerAngles.y, 0)), rotTarget, transitionCurve.Evaluate(transitionCurrent));
+        }
     }
 
     public bool CanSeePlayer() {

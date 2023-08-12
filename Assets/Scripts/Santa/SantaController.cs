@@ -23,7 +23,7 @@ public class SantaController : MonoBehaviour
     public SantaStateManager stateManager;
     NavMeshAgent agent;
 
-    bool dead = false;
+    public bool dead = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -45,13 +45,13 @@ public class SantaController : MonoBehaviour
     {
         if (health <= 0) {
             EnableRagdoll();
-        }
-
-        soundTimer += Time.deltaTime;
-        if (soundTimer > soundDuration) {
-            soundTimer = 0;
-            soundDuration = Random.Range(soundDurationRange.x, soundDurationRange.y);
-            HoHoHo();
+        } else {
+            soundTimer += Time.deltaTime;
+            if (soundTimer > soundDuration) {
+                soundTimer = 0;
+                soundDuration = Random.Range(soundDurationRange.x, soundDurationRange.y);
+                HoHoHo();
+            }
         }
     }
 
