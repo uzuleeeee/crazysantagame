@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
             postCon.BouncePost();
             santaCon.Disable();
             houseCon.Switch(1.3f);
-            cursorCon.EnableCursor(5.3f);
+            cursorCon.EnableCursor(5.74f);
             Invoke("ResetChanged", 5.3f);
             am.Play("Static");
             treeCon.ResetElfPop();
