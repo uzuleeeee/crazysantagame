@@ -101,7 +101,15 @@ public class CrossbowController : MonoBehaviour
             transitionTarget = 0;
         }
     }
+
+    public void SetTransitionCurrent(float newCurrent) {
+        transitionCurrent = newCurrent;
+    }
     
+    public void SetTransitionTarget(float newTarget) {
+        transitionTarget = newTarget;
+    }
+
     void ShootArrow() {
         Instantiate(arrow, arrowPoint.position, arrowPoint.rotation);
     }

@@ -19,6 +19,7 @@ TagManager:
   - TreePositions
   - TreeSpawner
   - Tree
+  - TimeController
   layers:
   - Default
   - TransparentFX

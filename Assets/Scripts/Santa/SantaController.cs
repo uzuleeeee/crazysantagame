@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class SantaController : MonoBehaviour
 {
     public Transform spawnPoint;
+    public GameObject fireworks;
 
     AudioManager am;
     public string[] sounds;
@@ -116,6 +117,23 @@ public class SantaController : MonoBehaviour
             }
             crossbowRb.isKinematic = false;
             crossbowRb.detectCollisions = true;
+
+            GameObject.FindWithTag("TimeController").GetComponent<TimeController>().BounceTime();
+            StartCoroutine(SpawnFireworks());
+        }
+    }
+
+    IEnumerator SpawnFireworks()
+    {
+        while (true) {
+            Instantiate(fireworks, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), transform.rotation);
+            Instantiate(fireworks, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), transform.rotation);
+            Instantiate(fireworks, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), transform.rotation);
+            Instantiate(fireworks, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), transform.rotation);
+            Instantiate(fireworks, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), transform.rotation);
+            Instantiate(fireworks, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), transform.rotation);
+            am.Play("Celebrate");
+            yield return new WaitForSeconds (Random.Range(2, 5));
         }
     }
 }
