@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public TextController textCon;
     public CameraController camCon;
     public PlayerRagdollController playerRDCon;
+    public PlayerMovementController playerMoveCon;
     public PostController postCon;
     public TimeController timeCon;
     public HouseController houseCon;
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
         cursorCon = GetComponent<CursorController>();
         cursorCon.EnableCursor(0);
         camCon.SetSanta(houseCon.currentSanta);
+        playerMoveCon.enabled = false;
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour
                 //santaCon.Enable(1f);
                 timeCon.StopTime(1.2f);
                 camCon.FPC(1.1f);
+                Invoke("EnablePlayerMoveCon", 1.7f);
                 //textCon.TextSetActive(true, 0.9f);
                 //textCon.TextSetActive(false, 2f);
             }
@@ -64,6 +67,7 @@ public class GameController : MonoBehaviour
             Invoke("ResetChanged", 5.3f);
             am.Play("Static");
             treeCon.ResetElfPop();
+            playerMoveCon.enabled = false;
         }
     }
 
@@ -71,5 +75,9 @@ public class GameController : MonoBehaviour
         changed = false;
         playerRDCon.ResetHit();
         del.ResetDelete();
+    }
+
+    void EnablePlayerMoveCon() {
+        playerMoveCon.enabled = true;
     }
 }
