@@ -7,6 +7,7 @@ public class SantaController : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject fireworks;
+    public Transform playerAim;
 
     AudioManager am;
     public string[] sounds;
@@ -47,6 +48,8 @@ public class SantaController : MonoBehaviour
         if (health <= 0) {
             EnableRagdoll();
         } else {
+            playerAim.position = stateManager.player.position;
+
             soundTimer += Time.deltaTime;
             if (soundTimer > soundDuration) {
                 soundTimer = 0;
@@ -71,8 +74,8 @@ public class SantaController : MonoBehaviour
 
     void ActuallyEnable() {
         gameObject.SetActive(true);
-        transform.position = spawnPoint.position;
-        transform.rotation = spawnPoint.rotation;
+        //transform.position = spawnPoint.position;
+        //transform.rotation = spawnPoint.rotation;
         stateManager.Reset();
     }
 

@@ -81,4 +81,8 @@ public class PlayerRagdollController : MonoBehaviour
     public void ResetHit() {
         hit = false;
     }
+
+    public void Reset(Transform newCrossbow) {
+        crossbow = newCrossbow;
+    }
 }

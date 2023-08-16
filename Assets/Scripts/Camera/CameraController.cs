@@ -33,7 +33,9 @@ public class CameraController : MonoBehaviour
         Debug.Log(IsComplete());
 
         if (secondCamPivot != null) {
-            secondCamPivot.LookAt(new Vector3(santa.position.x, secondCamPivot.position.y, santa.position.z));
+            if (santa != null) {
+                secondCamPivot.LookAt(new Vector3(santa.position.x, secondCamPivot.position.y, santa.position.z));
+            }
         }
 
         SpinTPC();
@@ -70,6 +72,10 @@ public class CameraController : MonoBehaviour
 
     public bool IsComplete() {
         return !brain.IsBlending;
+    }
+
+    public void SetSanta(Transform newSanta) {
+        santa = newSanta;
     }
 
     void SpinTPC() {

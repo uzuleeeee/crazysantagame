@@ -29,9 +29,6 @@ public class SantaStateManager : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
-        currentState = drawState;
-        currentState.StartState(this);
     }
 
     void Update()
@@ -43,6 +40,9 @@ public class SantaStateManager : MonoBehaviour
     public void Reset() {
         currentState = drawState;
         currentState.StartState(this);
+        player = GameObject.FindWithTag("Player").transform;
+        crossbowCtrl.Reset(player);
+        viewTarget = GameObject.FindWithTag("ViewTarget").transform;
     }
 
     public void SwitchState(SantaBaseState state) {

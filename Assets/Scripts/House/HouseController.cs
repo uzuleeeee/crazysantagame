@@ -5,11 +5,13 @@ using UnityEngine;
 public class HouseController : MonoBehaviour
 {
     public GameObject currentHouse;
+    public Transform currentSanta;
 
     HouseSwitcher houseSwitcher;
     public HousePhysicsController housePhysicsCon;
     HouseAppearanceController houseAppearanceCon;
     SiblingController siblingCon;
+    public SantaController santaCon;
 
     void Start() {
         houseSwitcher = GetComponent<HouseSwitcher>();
@@ -37,11 +39,15 @@ public class HouseController : MonoBehaviour
         housePhysicsCon.EnableHouse();
         houseAppearanceCon.TurnBlack();
         siblingCon.ActivateSibling(delay);
+        santaCon.Enable(1f);
     }
 
     void GetControllers() {
+        Debug.Log("Get controalsdflasdfawefeasfsad");
         housePhysicsCon = currentHouse.GetComponentInChildren<HousePhysicsController>();
         houseAppearanceCon = currentHouse.GetComponentInChildren<HouseAppearanceController>();
         siblingCon = currentHouse.GetComponentInChildren<SiblingController>();
+        santaCon = currentHouse.transform.GetChild(2).GetComponent<SantaController>();
+        currentSanta = santaCon.transform;
     }
 }

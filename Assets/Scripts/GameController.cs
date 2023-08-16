@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
         am = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         cursorCon = GetComponent<CursorController>();
         cursorCon.EnableCursor(0);
+        camCon.SetSanta(houseCon.currentSanta);
     }
 
     // Update is called once per frame
@@ -40,7 +41,10 @@ public class GameController : MonoBehaviour
                 camCon.Enter();
                 houseCon.EnableHouse(1f);
                 playerRDCon.DisableRagdoll();
-                santaCon.Enable(1f);
+                playerRDCon.Reset(houseCon.currentSanta.GetChild(1).GetChild(0));
+                //santaCon = houseCon.currentSanta.gameObject.GetComponent<SantaController>();
+                camCon.SetSanta(houseCon.currentSanta);
+                //santaCon.Enable(1f);
                 timeCon.StopTime(1.2f);
                 camCon.FPC(1.1f);
                 //textCon.TextSetActive(true, 0.9f);
@@ -54,9 +58,9 @@ public class GameController : MonoBehaviour
             camCon.Exit();
             timeCon.BounceTime();
             postCon.BouncePost();
-            santaCon.Disable();
+            //santaCon.Disable();
             houseCon.Switch(1.3f);
-            cursorCon.EnableCursor(5.74f);
+            cursorCon.EnableCursor(5.8f);
             Invoke("ResetChanged", 5.3f);
             am.Play("Static");
             treeCon.ResetElfPop();

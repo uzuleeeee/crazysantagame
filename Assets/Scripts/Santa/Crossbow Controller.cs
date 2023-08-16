@@ -47,6 +47,7 @@ public class CrossbowController : MonoBehaviour
         trReleaseHash = Animator.StringToHash("TrRelease");
 
         transitionCurrent = 1;
+        transitionTarget = 0;
     }
 
     void Update()
@@ -70,6 +71,11 @@ public class CrossbowController : MonoBehaviour
             }
         }        
         return false;
+    }
+
+    public void Reset(Transform player) {
+        this.player = player;
+        anim.SetTrigger(trReleaseHash);
     }
 
     public void Draw() {
