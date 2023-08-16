@@ -255,7 +255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  speed: 0.7
 --- !u!4 &7952315368813391121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cdff8e66a7d464fb0a2348bbb199f8f7, type: 3}
