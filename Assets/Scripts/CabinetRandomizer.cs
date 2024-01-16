@@ -10,7 +10,7 @@ public class CabinetRandomizer : MonoBehaviour
     void Start()
     {
         numOfChildren = transform.childCount;
-        destroyAmount = 4;
+        destroyAmount = 2;
         for (int i = 0; i < numOfChildren / destroyAmount; i++) {
             transform.GetChild(Random.Range(1, numOfChildren)).gameObject.SetActive(false);
         }

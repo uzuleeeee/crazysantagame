@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovementController : MonoBehaviour
 {
     Rigidbody rb;
+    public VisualEffect runLines;
+    PlayerHandsController playerHandsCon;
+    public AudioManager am;
 
     public float groundDrag, airDrag;
 
@@ -51,8 +55,19 @@ public class PlayerMovementController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerHandsCon = GetComponent<PlayerHandsController>();
 
         breathCapacity = breath;
+    }
+
+    void Update() {
+        if (moveSpeed > walkSpeed) {
+            runLines.SetFloat("SpawnRate", Mathf.Lerp(0, 32, moveSpeed / runSpeed));
+            playerHandsCon.SetMoveSpeed(1.5f);
+        } else {
+            runLines.SetFloat("SpawnRate", 0);
+            playerHandsCon.SetMoveSpeed(1f);
+        }
     }
 
     // Update is called once per frame

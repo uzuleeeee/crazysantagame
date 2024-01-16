@@ -10,8 +10,8 @@ public class BookshelfRandomizer : MonoBehaviour
     void Start()
     {
         numOfChildren = transform.childCount;
-        destroyAmount = Random.Range(2, 5);
-        for (int i = 0; i < numOfChildren / destroyAmount; i++) {
+        destroyAmount = Random.Range(numOfChildren / 2, numOfChildren - 2);
+        for (int i = 0; i < destroyAmount; i++) {
             transform.GetChild(Random.Range(0, numOfChildren - 2)).gameObject.SetActive(false);
         }
     }

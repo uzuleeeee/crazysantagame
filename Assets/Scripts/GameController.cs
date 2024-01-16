@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
                 Invoke("EnablePlayerMoveCon", 1.7f);
                 //textCon.TextSetActive(true, 0.9f);
                 //textCon.TextSetActive(false, 2f);
+                arrowCon.SetDestroyFalse(0f);
             }
         }
 
@@ -68,6 +69,7 @@ public class GameController : MonoBehaviour
             am.Play("Static");
             treeCon.ResetElfPop();
             playerMoveCon.enabled = false;
+            arrowCon.SetDestroyTrue(1f);
         }
     }
 

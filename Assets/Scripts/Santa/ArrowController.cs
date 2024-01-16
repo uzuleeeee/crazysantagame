@@ -15,6 +15,8 @@ public class ArrowController : MonoBehaviour
 
     int elfLayer;
 
+    public bool isMain = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,9 @@ public class ArrowController : MonoBehaviour
     {
         float mag = rb.velocity.magnitude;
 
+        if (!isMain && destroy) {
+            Destroy(gameObject);
+        }
 /*
         if (mag < 10) {
             Debug.Log("10, " + mag);
@@ -86,5 +91,21 @@ public class ArrowController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
         Vector3 normal = transform.up.normalized;
         transform.position += new Vector3(normal.x * 2, normal.y * 2, normal.z * 2);
+    }
+
+    public void SetDestroyTrue(float delay) {
+        Invoke("ActuallySetDestroyTrue", delay);
+    }
+
+    void ActuallySetDestroyTrue() {
+        destroy = true;
+    }
+
+    public void SetDestroyFalse(float delay) {
+        Invoke("ActuallySetDestroyFalse", delay);
+    }
+    
+    void ActuallySetDestroyFalse() {
+        destroy = false;
     }
 }

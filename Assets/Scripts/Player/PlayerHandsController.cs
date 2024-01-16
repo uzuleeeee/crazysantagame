@@ -26,7 +26,7 @@ public class PlayerHandsController : MonoBehaviour
     public Transform leftHandIK, rightHandIK;
 
     int inHandLayer, inMotionLayer, weaponLayer;
-    int isRunningHash, hasWeaponHash, punchNumHash, punchHash, throwHash, isLatchingHash, speedHash;
+    int isRunningHash, hasWeaponHash, punchNumHash, punchHash, throwHash, isLatchingHash, speedHash, moveSpeedHash;
 
     int punchNum;
 
@@ -67,6 +67,7 @@ public class PlayerHandsController : MonoBehaviour
         throwHash = Animator.StringToHash("throw");
         isLatchingHash = Animator.StringToHash("isLatching");
         speedHash = Animator.StringToHash("speed");
+        moveSpeedHash = Animator.StringToHash("moveSpeed");
 
         latchRayStart = playerMovementCon.latchBottomRaycast;
         latchLayer = playerMovementCon.latchLayer;
@@ -213,6 +214,10 @@ public class PlayerHandsController : MonoBehaviour
         } else {
             leftHand.layer = rightHand.layer = inHandLayer;
         }
+    }
+
+    public void SetMoveSpeed(float speed) {
+        anim.SetFloat(moveSpeedHash, speed);
     }
 
     void ResetJustThrew() {

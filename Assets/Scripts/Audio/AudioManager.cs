@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
 
     void Start() {
         Play("BGM");
+        Play("HeartBeat");
     }
 
     void Update() {
